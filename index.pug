@@ -1,3 +1,7 @@
+include mixins/card.pug
+include mixins/panel.pug
+include mixins/product.pug
+include mixins/button.pug
 doctype html
 html
   head
@@ -10,11 +14,11 @@ html
         .header__logo 
             img(src="../asset/img/logo.png", alt="logo image")
             h1 natual cosmetic
-        .header__navbar 
+        nav
             ul 
-                li home 
-                li about us 
-                li shop 
+                each val in ['home', 'about us', 'shop']
+                    li=val 
+                 
             .header__icon 
                 mixin icon(icon)
                          li.icon  
@@ -49,7 +53,7 @@ html
                 h2 ABOUT US
             .section__content 
               
-                    include mixins/card.pug
+                   
                     +card('fa-regular fa-heart','MADE WITH LOVE','Magna at erat pretium mattis id non odio quisque nec tempor sapien quis eget ligula ispsum sagittis.')
                     +card('fa-regular fa-face-smile','FOR YOUR HAPPINESS','Magna at erat pretium mattis id non odio quisque nec tempor sapien quis eget ligula ispsum sagittis.')
                     +card('fa-solid fa-sun','NATURAL CARE','Magna at erat pretium mattis id non odio quisque nec tempor sapien quis eget ligula ispsum sagittis.')
@@ -61,7 +65,7 @@ html
                         .content__title COSMETIC YOU CAN BE PROUD OF
                         .content__text Only natural ingridients
                     .panel
-                        include mixins/panel.pug
+                      
                         +panel('SAFETY','Morbi et magna at erat pretium mattis id non odio quisque nectem por sapien quis sagittis commodo ipsum arcu metus sed.')
                         +panel('quality','Morbi et magna at erat pretium mattis id non odio quisque nectem por sapien quis sagittis commodo ipsum arcu metus sed.')
                         +panel('vegan','Morbi et magna at erat pretium mattis id non odio quisque nectem por sapien quis sagittis commodo ipsum arcu metus sed.')
@@ -83,8 +87,8 @@ html
                         .content__title DEVOTED TO WONDERFUL BEAUTY
                         .content__subtitle With 30-minute premium treat
                         .content__text Phasellus faucibus vehicula rutrum in ante ligula vel arcu quis lacinia posuere metus eget ligula ipsum maximus lobortis nec imperdiet.
-                        
-                        button.btn-primary-outline.btn read more
+                        +button('readmore','btn-primary-outline btn')
+                        //- button.btn-primary-outline.btn read more
         
         section.description 
 
@@ -95,13 +99,13 @@ html
                         .content__subtitle Only natural ingridients
                         .content__text Phasellus faucibus vehicula rutrum in ante ligula vel arcu quis lacinia posuere metus eget ligula ipsum maximus lobortis nec imperdiet.
                         
-                        button.btn-primary-outline.btn read more  
+                         +button('readmore','btn-primary-outline btn') 
                     
                 .right-side 
                     .product
-                        include mixins/product.pug
+                       
                         +product('../asset/img/product1.jpg','$65.000','CARE CREAM')
-                        +product('../asset/img/product1.jpg','$65.000','CARE CREAM')
+                        +product('../asset/img/product2.jpg','$65.000','CARE CREAM')
         section.special-offer
 
             .section__container 
@@ -110,11 +114,11 @@ html
                     
                 .right-side 
                     .content 
-                        .content--img 
+                        .content__img 
                             img(src="../asset/img/image3.jpg", alt="product image")
-                        .content--title 
+                        .content__title 
                             h2 SPECIAL OFFERS FOR YOU ONLY
-                        a.content--link GET GIFTING
+                        a.content__link GET GIFTING
         section.best-seller 
             .section__title OUR BESTSELLERS
             .section__wrapper
@@ -141,10 +145,9 @@ html
                         .content__subtitle To get special offers to your email
                         .content__link 
                             ul 
-                                li Amsterdam CA 90291
-                                li email@site.com
-                                li +1 (234) 56-78
-                                li @natural.cosmetic   
+                                each val in ['Amsterdam CA 90291', 'email@site.com', '+1 (234) 56-78','@natural.cosmetic ']
+                                    li=val 
+                                  
                 .right-side 
                     .form__contact 
                         form 
@@ -153,25 +156,21 @@ html
                                 input.email(type="text" placeholder="Email")
                             .form__message 
                                 input.message(type="textarea" placeholder="Message")
-                    button.btn-primary-outline.btn read more  
+                    +button('readmore','btn-primary-outline btn')
   
     footer
         .container
             .footer__logo
                 img(src="../asset/img/logo.png", alt="logo")
             .footer__list
+                ul
+                    each val in ['ABOUT', 'FAQ', 'PRODUCTS','TERMS','POLICY']
+                        li=val 
+                    
                 ul 
-                    li ABOUT
-                    li FAQ
-                    li PRODUCTS
-                    li TERMS
-                    li POLICY
-                ul 
-                    li INSTAGRAM
-                    li TWITTER
-                    li FACEBOOK
-                    li PINTEREST
-                    li BLOG
+                    each val in ['INSTAGRAM', 'TWITTER', 'FACEBOOK','PINTEREST','BLOG']
+                        li=val 
+                    
             .footer__contact
                 .message  SUBSCRIBE TO OUR NEWSLETTER
                 form(action="") 

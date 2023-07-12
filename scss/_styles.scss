@@ -1,4 +1,42 @@
 @import "variables";
+@mixin flex(
+  $justify-content: flex-start,
+  $align-items: center,
+  $flex-direction: row
+) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-direction: $flex-direction;
+}
+@mixin section__title(
+  $text-align: center,
+  $padding: 30px,
+  $margin: 0 auto,
+  $padding-bottom: 85px,
+  $text-transform: uppercase,
+  $font-size: 40px
+) {
+  text-align: $text-align;
+  padding: $padding;
+  margin: $margin;
+  padding-bottom: $padding-bottom;
+  text-transform: $text-transform;
+  font-size: $font-size;
+}
+@mixin content__title(
+  $line-height: 1.1,
+  $font-weight: 400,
+  $text-transform: uppercase,
+  $font-size: 2.6rem,
+  
+) {
+  font-weight: $font-weight;
+  text-transform: $text-transform;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
 
 body {
   font-family: Arial, sans-serif;
@@ -8,15 +46,11 @@ body {
 
 header {
   text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex(space-between, center);
   width: 100%;
   padding: 10px 25px;
   .header__logo {
-    display: flex;
-    align-items: center;
-    justify-content: space-center;
+    @include flex(center, center);
     width: 40%;
     h1 {
       font-size: large;
@@ -28,16 +62,13 @@ header {
       margin-right: 20px;
     }
   }
-  .header__navbar {
+  nav {
     width: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex(space-between, center);
     ul {
       list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
+
+      @include flex(space-around, center);
       li {
         padding: 15px;
         font-weight: bold;
@@ -78,30 +109,23 @@ header {
       z-index: 0;
     }
     .slide__content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flex(space-between, center);
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 2;
       width: 85%;
-     
-     
+
       padding-top: 50px;
       // transform: translateX(30%);
       img {
         // max-width: 500px;
         max-width: 50%;
         margin-left: 8%;
-        
       }
       .slide__content__des {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
+        @include flex(flex-start, flex-start, column);
         color: $primary-color;
         min-width: 40%;
         h2 {
@@ -120,41 +144,33 @@ header {
           line-height: 1.5;
         }
       }
-      .slide__control{
+      .slide__control {
         padding: 0 80px;
         color: $primary-color;
         font-size: 25px;
-        .slide__pre{
+        .slide__pre {
           transform: translate(-50%, -50%);
           position: absolute;
           left: -2%;
-  
+          cursor: pointer;
         }
-        .slide__next{
+        .slide__next {
           transform: translate(-50%, -50%);
           position: absolute;
           right: -2%;
-  
+          cursor: pointer;
         }
       }
     }
-   
   }
   .about-us {
     padding: 0 80px;
     margin-top: 80px;
     .section__title {
-      text-align: center;
-      padding: 30px;
-      margin: 0 auto;
-      padding-bottom: 85px;
-      text-transform: uppercase;
-      font-size: 40px;
+      @include section__title(center, 30px, 0 auto, 85px, uppercase, 40px);
     }
     .section__content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flex(space-between, center);
       gap: 20px;
 
       .card {
@@ -162,12 +178,12 @@ header {
         padding: 30px 30px 60px;
 
         text-align: center;
-        .card--icon {
+        .card__icon {
           font-size: 5rem;
           color: #ff2b09;
           margin-bottom: 2rem;
         }
-        .card--title strong {
+        .card__title strong {
           font-size: 1.2rem;
           line-height: 1.5;
           font-weight: 600;
@@ -179,19 +195,13 @@ header {
     padding: 0 80px;
     margin-top: 80px;
     .section__container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flex(space-between, center);
       .left-side {
         padding: 50px;
         max-width: 50%;
         .content {
           .content__title {
-            line-height: 1.5;
-            font-weight: 400;
-            text-transform: uppercase;
-            font-size: 2.6rem;
-            line-height: 1.1;
+            @include content__title(1.1,400,uppercase, 2.6rem )
           }
           .content__text {
             color: #626262;
@@ -206,15 +216,13 @@ header {
           .panel__title {
             border-top: 2px solid #626262;
             padding: 15px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            .panel__title--text {
+            @include flex(space-between, center);
+            .panel__title__text {
               font-weight: 400;
               text-transform: uppercase;
               font-size: 1.2rem;
             }
-            .panel__title--icon {
+            .panel__title__icon {
               color: $secondary-color;
               font-size: 25px;
             }
@@ -239,11 +247,7 @@ header {
       background: #f2f2f2;
       border-radius: 0;
       .section__title {
-        padding: 30px;
-        margin: 0 auto;
-
-        text-transform: uppercase;
-        font-size: 40px;
+        @include section__title(center, 30px, 0 auto, 85px, uppercase, 40px);
       }
       .section__link {
         color: #626262;
@@ -262,10 +266,8 @@ header {
     padding: 0 80px;
     margin-top: 80px;
     .section__container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .left-side  {
+      @include flex(space-between, center);
+      .left-side {
         max-width: 50%;
       }
       .right-side {
@@ -273,10 +275,7 @@ header {
         max-width: 50%;
         .content {
           .content__title {
-            font-weight: 400;
-            text-transform: uppercase;
-            font-size: 2.6rem;
-            line-height: 1.1;
+            @include content__title(1.1,400,uppercase, 2.6rem )
           }
           .content__subtitle {
             color: #626262;
@@ -296,19 +295,17 @@ header {
     padding: 0 80px;
     margin-top: 80px;
     .section__container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flex(space-between, center);
       .left-side {
         max-width: 50%;
       }
       .right-side {
         padding: 50px;
-        max-width:690px;
+        max-width: 690px;
         text-align: center;
         max-width: 50%;
         .content {
-          .content--link {
+          .content__link {
             color: #626262;
             text-transform: uppercase;
             margin-top: 1.25rem;
@@ -319,16 +316,13 @@ header {
               cursor: pointer;
             }
           }
-          .content--title {
-            font-weight: 400;
-            text-transform: uppercase;
-            font-size: 1.6rem;
-            line-height: 1.1;
+          .content__title {
+            @include content__title(1.1,400,uppercase, 2.6rem );
             padding: 1rem;
             word-break: break-word;
             word-wrap: break-word;
           }
-          .content--img {
+          .content__img {
             max-width: 300px;
             margin: 0 auto;
           }
@@ -341,21 +335,14 @@ header {
     margin-top: 80px;
 
     .section__container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
+      @include flex(space-between, center);
       .left-side {
         max-width: 50%;
-       
+
         .content {
-         
           padding: 50px;
           .content__title {
-            font-weight: 400;
-            text-transform: uppercase;
-            font-size: 2.6rem;
-            line-height: 1.1;
+            @include content__title(1.1,400,uppercase, 2.6rem )
           }
           .content__subtitle {
             color: #626262;
@@ -372,9 +359,7 @@ header {
       .right-side {
         max-width: 50%;
         .product {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          @include flex(center, center);
           gap: 10px;
           height: 500px;
 
@@ -400,7 +385,6 @@ header {
                 text-transform: uppercase;
               }
               .product__price {
-               
                 font-size: 1.0525rem;
                 line-height: 1.5;
               }
@@ -414,19 +398,13 @@ header {
     padding: 0 80px;
     margin-top: 80px;
     .section__title {
-      text-align: center;
-      padding: 30px;
-      margin: 0 auto;
-      padding-bottom: 85px;
-      text-transform: uppercase;
-      font-size: 40px;
+      @include section__title(center, 30px, 0 auto, 85px, uppercase, 40px);
     }
     .section__wrapper {
       display: grid;
       gap: 20px;
       grid-template-columns: auto auto auto;
-     
-      
+
       .product__item {
         height: 500px;
         position: relative;
@@ -434,7 +412,6 @@ header {
 
         .product__img {
           height: 100%;
-       
         }
         .product__des {
           position: absolute;
@@ -450,7 +427,6 @@ header {
             text-transform: uppercase;
           }
           .product__price {
-           
             font-size: 1.0525rem;
             line-height: 1.5;
           }
@@ -462,21 +438,12 @@ header {
     padding: 0 80px;
     margin-top: 80px;
     .section__title {
-      text-align: center;
-      padding: 30px;
-      margin: 0 auto;
-      padding-bottom: 85px;
-      text-transform: uppercase;
-      font-size: 40px;
+      @include section__title(center, 30px, 0 auto, 85px, uppercase, 40px);
     }
     .section__wrapper {
-      // display: flex;
-      // align-items: center;
-      // justify-content: space-between;
       display: grid;
       gap: 20px;
       grid-template-columns: auto auto auto;
-     
 
       .product__item {
         height: 500px;
@@ -500,7 +467,6 @@ header {
             text-transform: uppercase;
           }
           .product__price {
-            
             font-size: 1.0525rem;
             line-height: 1.5;
           }
@@ -511,20 +477,14 @@ header {
   .contact {
     padding: 0 80px;
     margin-top: 80px;
-    .section__container{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .left-side{
+    .section__container {
+      @include flex(space-between, center);
+      .left-side {
         max-width: 50%;
-        .content{
-          
+        .content {
           padding: 50px;
           .content__title {
-            font-weight: 400;
-            text-transform: uppercase;
-            font-size: 2.6rem;
-            line-height: 1.1;
+            @include content__title(1.1,400,uppercase, 2.6rem )
           }
           .content__subtitle {
             color: #626262;
@@ -535,28 +495,24 @@ header {
           .content__link li {
             font-size: 1.0525rem;
             line-height: 1.5;
-            &:hover{
+            &:hover {
               color: $secondary-color;
               cursor: pointer;
             }
           }
         }
       }
-      .right-side{
+      .right-side {
         width: 50%;
-        .form__contact{
-          
-         
-          .form__info{
-           display: flex;
+        .form__contact {
+          .form__info {
+            display: flex;
             input {
-              width: 50% ;
+              width: 50%;
               padding: 15px 5px;
-              
             }
-            
           }
-          .form__message{
+          .form__message {
             input {
               width: 100%;
               height: auto;
@@ -566,61 +522,55 @@ header {
         }
       }
     }
-
   }
 }
 
 footer {
-  .container{
-    padding:  80px;
+  .container {
+    padding: 80px;
     margin-top: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex(space-between, center);
     background-color: #f2f2f2;
-    gap:15px;
-    .footer__logo{
-        img {
-          max-width: 400px;
-        }
+    gap: 35px;
+    .footer__logo {
+      img {
+        max-width: 400px;
+      }
     }
-    .footer__list{
-      display: flex;
-      justify-content: space-between;
+    .footer__list {
+      @include flex(space-between, center);
       gap: 200px;
       ul {
         li {
           font-size: 1.0525rem;
           line-height: 1.5;
           font-weight: 600;
-          &:hover{
+          &:hover {
             color: $secondary-color;
             cursor: pointer;
           }
         }
       }
-
     }
-    .footer__contact{
-      .message{
+    .footer__contact {
+      .message {
         margin: 20px 0;
         font-size: 1.0525rem;
-          line-height: 1.5;
-          font-weight: 600;
+        line-height: 1.5;
+        font-weight: 600;
       }
       form {
-        .email{
+        .email {
           background-color: #f2f2f2;
         }
         .submit {
-          &:hover{
+          &:hover {
             color: #f2f2f2;
             background-color: $primary-color;
-            transition: ease-in .2s;
+            transition: ease-in 0.2s;
           }
         }
       }
-
     }
   }
 }
